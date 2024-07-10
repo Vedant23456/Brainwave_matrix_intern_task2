@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Analyzer</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Password Strength Analyzer</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="password">Enter your password:</label>
+                <input type="password" id="password" name="password" class="password-input" required>
+            </div>
+            <button type="submit">Analyze</button>
+        </form>
+        
+        {% if result %}
+        <div id="result">
+            <h2>Analysis Result for '{{ password }}':</h2>
+            <p>{{ result['lower_count'] }} lowercase characters</p>
+            <p>{{ result['upper_count'] }} uppercase characters</p>
+            <p>{{ result['num_count'] }} numeric characters</p>
+            <p>{{ result['wspace_count'] }} whitespace characters</p>
+            <p>{{ result['special_count'] }} special characters</p>
+            <p>Password Strength: {{ result['strength'] }}</p>
+            <p>Hint: {{ result['remarks'] }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
